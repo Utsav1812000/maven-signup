@@ -12,15 +12,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bean.UserBean;
 import com.dao.UserDao;
+import com.services.Services;
 
 @Controller
 public class UserController {
 
 	@Autowired
 	UserDao dao;
+	
+	@Autowired
+	Services service;
 	
 	@RequestMapping(value = "Signup", method = RequestMethod.GET)
 	public String SignupUser(Model model) {
@@ -29,11 +35,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "saveUser",method = RequestMethod.POST)
-	public String saveUser(@Valid @ModelAttribute("user") UserBean user, BindingResult result ,Model model) {
+	public String saveUser(@Valid @ModelAttribute("user") UserBean user,@RequestParam("profile") MultipartFile file, BindingResult result ,Model model) {
+		
 		if(result.hasErrors()) {
 			model.addAttribute("user",user);
 			return "signup";
 		}else {
+			String filename= service.fileUpload(file);
+			user.setFilename(filename);
 			dao.insert(user);
 			model.addAttribute("user", user);
 			return "redirect:/userData";

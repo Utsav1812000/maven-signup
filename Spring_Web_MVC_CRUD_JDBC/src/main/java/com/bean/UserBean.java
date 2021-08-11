@@ -21,6 +21,14 @@ public class UserBean {
 	@Length(min = 8,max = 16,message = "Length must be between 8 to 16 digit.")
 	private String password;
 	
+	private String filename;
+	
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 	public int getId() {
 		return id;
 	}

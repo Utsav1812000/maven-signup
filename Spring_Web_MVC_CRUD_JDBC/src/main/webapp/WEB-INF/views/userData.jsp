@@ -27,6 +27,7 @@
             <th>Gender</th>
             <th>Hobby</th>
             <th>Password</th>
+            <th>FileName</th>
             <th>Update</th>
             <th>Delete</th>
         </tr>
@@ -42,6 +43,7 @@
             	<c:forEach items="${data.hobby }" var="hb">${hb } </c:forEach>
             </td>
             <td>${data.password }</td>
+            <td>${data.filename }</td>
             <td><a href="update/${data.id }" style="text-decoration: none">Edit</a></td>
             <td><a href="delete?id=${data.id }" style="text-decoration: none">delete</a></td>
             

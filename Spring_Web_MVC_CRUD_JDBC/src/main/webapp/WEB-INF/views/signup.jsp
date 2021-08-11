@@ -28,7 +28,7 @@
 		<div class="row">
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
-				<f:form action="saveUser" cssClass="form-border" method="post"
+				<f:form action="saveUser" cssClass="form-border" enctype="multipart/form-data" method="post"
 					modelAttribute="user">
 					<div class="form-group">
 						<label for="name">Name:</label>
@@ -62,6 +62,10 @@
 						<label for="pwd">Password:</label>
 						<f:password class="form-control" path="password" />
 						<f:errors cssClass="error" path="password"></f:errors>
+					</div>
+					<div class="form-group">
+						<label for="profile">Profile Pic:</label>
+						<input type="file" class="" name="profile" />
 					</div>
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</f:form>
